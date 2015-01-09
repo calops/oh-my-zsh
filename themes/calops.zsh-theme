@@ -22,12 +22,12 @@
 # SSH
 local ssh
 if [ ! -z "$SSH_TTY" ]; then
-    ssh='%{${fg_bold[red]}%}ssh%{$reset_color%} '
+    ssh='%B%F{red}ssh %b'
 fi
 
 # Hostname
 local hostname
-hostname="%{${fg[cyan]}%}%n%{${fg[blue]}%}@%{$reset_color%}%{${fg[cyan]}%}%m"
+hostname="%F{cyan}%n%B%F{blue}@%b%F{cyan}%m%f"
 
 # Git
 local git
@@ -37,7 +37,7 @@ fi
 
 # Path
 local pathname
-pathname="%{${fg_bold[green]}%}%3~%{$reset_color%}"
+pathname="%B%F{green}%3~%b"
 
 # Separator
 local separator=' '
@@ -50,21 +50,21 @@ if [ "$USER" = "root" ]; then
 else
     caretcolor="blue"
 fi
-caret=" %{${fg[$caretcolor]}%}%#%{${reset_color}%} "
+caret=" %B%F{$caretcolor}%#%b "
 
 # Background jobs
-local job='$(if [ ! -z "$(jobs)" ]; then echo "%{${fg[yellow]}%} ⚙ %j"; fi)'
+local job='$(if [ ! -z "$(jobs)" ]; then echo "%F{yellow} ⚙ %j"; fi)'
 
 # Vi mode
 local vi='$(vi_mode_prompt_info)'
 
 # Error code
-local error="%(?..%{$fg[red]%} %? ↵)"
+local error="%(?..%F{red} %? ↵)"
 
-PS1="${ssh}${hostname}${separator}${pathname}${caret}"
-RPS1="${vi}${git}${job}${error}%{$reset_color%}"
+PS1="${ssh}${hostname}${separator}${pathname}${caret}%b%f"
+RPS1="${vi}${git}${job}${error}%b%f"
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[cyan]%}‹"
+ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{cyan}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
 
-MODE_INDICATOR="%{$fg_bold[magenta]%}<%{$reset_color%}%{$fg[magenta]%}<<%{$reset_color%}"
+MODE_INDICATOR="%B%F{magenta}<%b%F{magenta}<<%{$reset_color%}"
