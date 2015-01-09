@@ -31,7 +31,7 @@ hostname="%{${fg[cyan]}%}%n%{${fg[blue]}%}@%{$reset_color%}%{${fg[cyan]}%}%m"
 
 # Git
 local git
-if whence prompt_git_status; then
+if whence prompt_git_status >/dev/null; then
     git='$(prompt_git_status "(%s)")'
 fi
 
