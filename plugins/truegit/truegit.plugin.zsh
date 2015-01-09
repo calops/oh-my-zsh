@@ -25,10 +25,10 @@
 
 if [ ! -z "$GIT_PS1_PATH" ]; then
     source $GIT_PS1_PATH
-elif [ -f "/etc/bash_completion.d/git-prompt" ]; then
-    source /etc/bash_completion.d/git-prompt
+elif [ -f "/usr/lib/git-core/git-sh-prompt" ]; then
+    source /usr/lib/git-core/git-sh-prompt
 else
-    source $ZSH/plugins/truegit/git-prompt
+    source $ZSH/plugins/truegit/git-sh-prompt
 fi
 
 # Allow for functions in the prompt
