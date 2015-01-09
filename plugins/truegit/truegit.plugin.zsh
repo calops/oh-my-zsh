@@ -38,7 +38,7 @@ setopt prompt_subst
 function prompt_git_status() {
     local str="$1"
 
-    if which __git_ps1 >/dev/null 2>&1; then
+    if whence __git_ps1; then
         __git_ps1 $str
     fi
 }
