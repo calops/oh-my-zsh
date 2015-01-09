@@ -9,6 +9,11 @@
 #     export GIT_PS1_DESCRIBE_STYLE=branch
 #     export GIT_PS1_SHOWCOLORHINTS=1
 #
+# If you have the git-prompt script installed on your system, specify the path
+# in the environment variable GIT_PS1_PATH. Default is
+# "/etc/bash_completion.d/git-prompt". If none is found, a copy of the script
+# is provided in this plugin, but there is no warranty that it is up to date.
+#
 # Usage:
 # Set PROMPT or RPROMPT like this:
 # PROMPT='%n@%m %3~$(prompt_git_status " [%s]") %# '
@@ -17,7 +22,14 @@
 #
 # Load the official git-prompt script written for bash
 # TODO: make something a little more generic
-source /etc/bash_completion.d/git-prompt
+
+if [ ! -z "$GIT_PS1_PATH" ]; then
+    source $GIT_PS1_PATH
+elif [ -f "/etc/bash_completion.d/git-prompt" ]; then
+    source /etc/bash_completion.d/git-prompt
+else
+    source $ZSH/plugins/truegit/git-prompt
+fi
 
 # Allow for functions in the prompt
 setopt prompt_subst
