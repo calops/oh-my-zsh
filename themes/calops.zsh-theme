@@ -1,3 +1,6 @@
+# -*- mode: zsh; -*-
+# vim: set ft=zsh:
+#
 # author: Rémi "calops" Labeyrie
 # file: calops.zsh-theme
 #
@@ -13,10 +16,9 @@
 #   - number of suspended jobs
 #   - error code
 #
+# Recommended setting in your .zshrc:
+# setopt transient_rprompt
 #
-# -*- mode: zsh; -*-
-# vim: set ft=zsh:
-
 # SSH
 local ssh
 if [ ! -z "$SSH_TTY" ]; then
@@ -30,7 +32,7 @@ hostname="%{${fg[cyan]}%}%n%{${fg[blue]}%}@%{$reset_color%}%{${fg[cyan]}%}%m"
 # Git
 local git
 if which __git_ps1 >/dev/null; then
-    git='$(__git_ps1 "(%s)")'
+    git='$(prompt_git_status "(%s)")'
 fi
 
 # Path

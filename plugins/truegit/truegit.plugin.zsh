@@ -17,9 +17,7 @@
 #
 # Load the official git-prompt script written for bash
 # TODO: make something a little more generic
-if ! which __git_ps1 >/dev/null; then
-    source /etc/bash_completion.d/git-prompt
-fi
+source /etc/bash_completion.d/git-prompt
 
 # Allow for functions in the prompt
 setopt prompt_subst
@@ -28,5 +26,7 @@ setopt prompt_subst
 function prompt_git_status() {
     local str="$1"
 
-    __git_ps1 $str
+    if which __git_ps1 >/dev/null 2>&1; then
+        __git_ps1 $str
+    fi
 }
