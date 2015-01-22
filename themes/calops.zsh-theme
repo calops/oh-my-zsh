@@ -18,7 +18,10 @@
 #
 # Recommended setting in your .zshrc:
 # setopt transient_rprompt
-#
+
+# TODO: something cleaner than that
+export TERM=xterm-256color
+
 # SSH
 local ssh
 if [ ! -z "$SSH_TTY" ]; then
@@ -61,10 +64,10 @@ local vi='$(vi_mode_prompt_info)'
 # Error code
 local error="%(?..%F{red} %? ↵)"
 
-PS1="${ssh}${hostname}${separator}${pathname}${caret}%b%f"
+PS1="${ssh}${hostname}${separator}${pathname}${caret}%b%f%k"
 RPS1="${vi}${git}${job}${error}%b%f"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{cyan}‹"
-ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="› %b%f%k"
 
 MODE_INDICATOR="%B%F{magenta}<%b%F{magenta}<<%{$reset_color%}"
